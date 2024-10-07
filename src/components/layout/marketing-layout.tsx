@@ -6,8 +6,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { siteConfig } from "@/constants";
 import { cn } from "@/lib/utils";
-import { ArrowRight, ChevronRight, Code, Copy, Database, Lock, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  ChevronRight,
+  Code,
+  Copy,
+  Database,
+  Lock,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import { MarketingFooter } from "./marketing-footer";
 import { MarketingHeader } from "./marketing-header";
 
@@ -22,6 +32,17 @@ export function MarketingLayout({ children }: { children: React.ReactNode }) {
 }
 
 export function Hero() {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    setCopied(true);
+    navigator.clipboard.writeText(
+      `npx create-next-app --example ${siteConfig.github}`,
+    );
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+  const Icon = copied ? Check : Copy;
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
       <div className="px-4 md:px-6">
@@ -32,20 +53,20 @@ export function Hero() {
               Next-Gen Web Development Boilerplate
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-              Jumpstart your project with our powerful stack: Next.js, shadcn, Drizzle ORM, Turso
-              DB, Tailwind CSS, and Clerk Auth for seamless authentication.
+              Jumpstart your project with our powerful stack: Next.js, shadcn,
+              Drizzle ORM, Turso DB, Tailwind CSS, and Clerk Auth for seamless
+              authentication.
             </p>
           </div>
           <div className="space-x-4">
             <Button
               variant="outline"
               className="max-w-[280px] truncate font-mono text-sm inline-flex justify-around"
-              onClick={() => {
-                navigator.clipboard.writeText(`npx create-next-app --example ${siteConfig.github}`);
-              }}
+              onClick={handleCopy}
             >
-              <span className="text-muted-foreground mr-2">$</span> npx create-next-app ...
-              <Copy className="ml-2 h-4 w-4" />
+              <span className="text-muted-foreground mr-2">$</span> npx
+              create-next-app ...
+              <Icon className="ml-2 h-4 w-4" />
             </Button>
             <Link href="/dashboard">
               <RainbowButton>Get Started</RainbowButton>
@@ -72,8 +93,8 @@ export function Features() {
             </CardHeader>
             <CardContent>
               <p>
-                React framework for production-grade applications with server-side rendering and
-                static site generation.
+                React framework for production-grade applications with
+                server-side rendering and static site generation.
               </p>
             </CardContent>
           </Card>
@@ -83,7 +104,10 @@ export function Features() {
               <CardTitle>shadcn</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>Beautifully designed components that you can copy and paste into your apps.</p>
+              <p>
+                Beautifully designed components that you can copy and paste into
+                your apps.
+              </p>
             </CardContent>
           </Card>
           <Card>
@@ -93,8 +117,8 @@ export function Features() {
             </CardHeader>
             <CardContent>
               <p>
-                TypeScript ORM for SQL databases with Turso's distributed SQLite for global,
-                low-latency data access.
+                TypeScript ORM for SQL databases with Turso's distributed SQLite
+                for global, low-latency data access.
               </p>
             </CardContent>
           </Card>
@@ -105,8 +129,8 @@ export function Features() {
             </CardHeader>
             <CardContent>
               <p>
-                Secure and easy-to-implement authentication solution, providing a seamless login
-                experience for your users.
+                Secure and easy-to-implement authentication solution, providing
+                a seamless login experience for your users.
               </p>
             </CardContent>
           </Card>
@@ -126,8 +150,9 @@ export function WhyChooseSection() {
               Why Choose Our Boilerplate?
             </h2>
             <p className="text-gray-500 dark:text-gray-400">
-              Our boilerplate combines the best of modern web development tools to give you a head
-              start on your next project. Here's what makes it special:
+              Our boilerplate combines the best of modern web development tools
+              to give you a head start on your next project. Here's what makes
+              it special:
             </p>
             <ul className="space-y-2">
               <li className="flex items-center">
@@ -140,7 +165,9 @@ export function WhyChooseSection() {
               </li>
               <li className="flex items-center">
                 <Database className="h-5 w-5 mr-2 text-primary" />
-                <span>Efficient data management with Drizzle ORM and Turso DB</span>
+                <span>
+                  Efficient data management with Drizzle ORM and Turso DB
+                </span>
               </li>
               <li className="flex items-center">
                 <Lock className="h-5 w-5 mr-2 text-primary" />
@@ -177,10 +204,12 @@ export function GetStartedSection() {
       <div className="px-4 md:px-6">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Get Started Today</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+              Get Started Today
+            </h2>
             <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Start building your next project with our powerful boilerplate. It's free and open
-              source.
+              Start building your next project with our powerful boilerplate.
+              It's free and open source.
             </p>
           </div>
           <Button asChild size="lg">
