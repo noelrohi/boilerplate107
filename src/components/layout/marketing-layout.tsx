@@ -3,11 +3,11 @@
 import AnimatedGradientText from "@/components/ui/animated-gradient-text";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { RainbowButton } from "@/components/ui/rainbow-button";
 import { siteConfig } from "@/constants";
 import { cn } from "@/lib/utils";
 import { ArrowRight, ChevronRight, Code, Copy, Database, Lock, Zap } from "lucide-react";
 import Link from "next/link";
-import { RainbowButton } from "@/components/ui/rainbow-button";
 import { MarketingFooter } from "./marketing-footer";
 import { MarketingHeader } from "./marketing-header";
 
