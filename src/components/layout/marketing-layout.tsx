@@ -33,7 +33,7 @@ export function Hero() {
           </div>
           <div className="space-x-4">
             <Button asChild>
-              <Link href="#get-started">Get Started</Link>
+              <Link href="/dashboard">Get Started</Link>
             </Button>
             <Button asChild variant="outline">
               <Link href="https://github.com">View on GitHub</Link>
