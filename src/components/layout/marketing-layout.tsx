@@ -1,16 +1,15 @@
 "use client";
 
+import AnimatedGradientText from "@/components/ui/animated-gradient-text";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Code, Database, Lock, Zap } from "lucide-react";
+import { siteConfig } from "@/constants";
+import { cn } from "@/lib/utils";
+import { ArrowRight, ChevronRight, Code, Copy, Database, Lock, Zap } from "lucide-react";
 import Link from "next/link";
-import { RainbowButton } from "../ui/rainbow-button";
+import { RainbowButton } from "@/components/ui/rainbow-button";
 import { MarketingFooter } from "./marketing-footer";
 import { MarketingHeader } from "./marketing-header";
-import { ChevronRight } from "lucide-react";
-import AnimatedGradientText from "@/components/ui/animated-gradient-text";
-import { cn } from "@/lib/utils";
-import { siteConfig } from "@/constants";
 
 export function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -38,12 +37,19 @@ export function Hero() {
             </p>
           </div>
           <div className="space-x-4">
+            <Button
+              variant="outline"
+              className="max-w-[280px] truncate font-mono text-sm inline-flex justify-around"
+              onClick={() => {
+                navigator.clipboard.writeText(`npx create-next-app --example ${siteConfig.github}`);
+              }}
+            >
+              <span className="text-muted-foreground mr-2">$</span> npx create-next-app ...
+              <Copy className="ml-2 h-4 w-4" />
+            </Button>
             <Link href="/dashboard">
               <RainbowButton>Get Started</RainbowButton>
             </Link>
-            <Button asChild variant="outline">
-              <Link href="https://github.com">View on GitHub</Link>
-            </Button>
           </div>
         </div>
       </div>
@@ -178,7 +184,7 @@ export function GetStartedSection() {
             </p>
           </div>
           <Button asChild size="lg">
-            <Link href="https://github.com">
+            <Link href={siteConfig.github} target="_blank">
               Clone Repository <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
