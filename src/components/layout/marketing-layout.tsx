@@ -4,8 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Code, Database, Lock, Zap } from "lucide-react";
 import Link from "next/link";
+import { RainbowButton } from "../ui/rainbow-button";
 import { MarketingFooter } from "./marketing-footer";
 import { MarketingHeader } from "./marketing-header";
+import { ChevronRight } from "lucide-react";
+import AnimatedGradientText from "@/components/ui/animated-gradient-text";
+import { cn } from "@/lib/utils";
+import { siteConfig } from "@/constants";
 
 export function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -23,18 +28,19 @@ export function Hero() {
       <div className="px-4 md:px-6">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2">
+            <IntroducingButton>Introducing {siteConfig.name}</IntroducingButton>
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
               Next-Gen Web Development Boilerplate
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
               Jumpstart your project with our powerful stack: Next.js, shadcn, Drizzle ORM, Turso
-              DB, Tailwind CSS, and Stack Auth for seamless authentication.
+              DB, Tailwind CSS, and Clerk Auth for seamless authentication.
             </p>
           </div>
           <div className="space-x-4">
-            <Button asChild>
-              <Link href="/dashboard">Get Started</Link>
-            </Button>
+            <Link href="/dashboard">
+              <RainbowButton>Get Started</RainbowButton>
+            </Link>
             <Button asChild variant="outline">
               <Link href="https://github.com">View on GitHub</Link>
             </Button>
@@ -47,7 +53,7 @@ export function Hero() {
 
 export function Features() {
   return (
-    <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+    <section id="features" className="w-full py-12 md:py-24 lg:py-32">
       <div className="px-4 md:px-6">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
           Features
@@ -89,7 +95,7 @@ export function Features() {
           <Card>
             <CardHeader>
               <Lock className="h-10 w-10 mb-2 text-primary" />
-              <CardTitle>Stack Auth</CardTitle>
+              <CardTitle>Clerk</CardTitle>
             </CardHeader>
             <CardContent>
               <p>
@@ -161,10 +167,7 @@ export function WhyChooseSection() {
 
 export function GetStartedSection() {
   return (
-    <section
-      id="get-started"
-      className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
-    >
+    <section id="get-started" className="w-full py-12 md:py-24 lg:py-32">
       <div className="px-4 md:px-6">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2">
@@ -182,5 +185,21 @@ export function GetStartedSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+export function IntroducingButton({ children }: { children: React.ReactNode }) {
+  return (
+    <AnimatedGradientText>
+      🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />{" "}
+      <span
+        className={cn(
+          "inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent",
+        )}
+      >
+        {children}
+      </span>
+      <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+    </AnimatedGradientText>
   );
 }

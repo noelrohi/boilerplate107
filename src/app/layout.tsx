@@ -1,5 +1,6 @@
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { Toaster } from "@/components/ui/sonner";
+import { siteConfig } from "@/constants";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
@@ -19,10 +20,10 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "boilerplate107",
-    template: "%s - boilerplate107",
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
   },
-  description: "Get started with Nextjs, Shadcn UI, TailwindCSS, Clerk, Drizzle ORM, and Turso DB.",
+  description: siteConfig.description,
 };
 
 export default function RootLayout({
@@ -36,7 +37,7 @@ export default function RootLayout({
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
