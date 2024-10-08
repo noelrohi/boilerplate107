@@ -171,7 +171,7 @@ export function WhyChooseSection() {
               </li>
               <li className="flex items-center">
                 <Lock className="h-5 w-5 mr-2 text-primary" />
-                <span>Secure authentication with Stack Auth</span>
+                <span>Secure authentication with Clerk Auth</span>
               </li>
             </ul>
           </div>
